@@ -1,11 +1,12 @@
-var mqttConnect = require('../config/mqttConnect')
+var {TOPIC} = require('../utils/urlTopic');
+var mqttConnect = require('../mqtt/mqttConnect')
 var mqttClient = mqttConnect();
 
 module.exports.on = async (req, res) => {
-    mqttClient.publish('inTopic/nhanl', '0');
-    res.send({'msg':"off"})
+    mqttClient.publish(TOPIC + 'switch1', '1');
+    res.send({'msg':"on"})
 };
 module.exports.off = async (req, res) => {
-    mqttClient.publish('inTopic/nhanl', '1');
-    res.send({'msg':"on"})
+    mqttClient.publish(TOPIC + 'switch1', '0');
+    res.send({'msg':"off"})
 };

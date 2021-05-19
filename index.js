@@ -1,7 +1,7 @@
 var mqtt = require('mqtt')
 const express = require('express')
-const mqttConnect = require('./src/config/mqttConnect');
-const mqttSubcribe = require('./src/config/mqttSubcribe');
+const mqttConnect = require('./src/mqtt/mqttConnect');
+const {mqttSubcribeRoom1} = require('./src/mqtt/mqttSubcribe');
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 
 var mqttClient = mqttConnect();
-mqttSubcribe(mqttClient);
+mqttSubcribeRoom1(mqttClient);
 //setup the callbacks
 mqttClient.on('connect', function () {
     console.log('Connected');
